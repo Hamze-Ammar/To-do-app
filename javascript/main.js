@@ -38,6 +38,22 @@ $(document).ready(function(){
     displayTasksOnLoad();
 });
 
+// On load get and display tasks form localStorage
+function displayTasksOnLoad(){
+    const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
+    if (tasks_to_do) {
+        for (let i=0; i<tasks_to_do.length ; i++){
+            displayTasksToDo(tasks_to_do[i]);
+        }
+    }
+    const completed_tasks = JSON.parse(localStorage.getItem("tasks_completed"));
+    if (completed_tasks) {
+        for (let i=0; i<completed_tasks.length ; i++){
+            displayCompletedTask(completed_tasks[i]);
+        }
+    }
+}
+
 
 //=========Create Task==========
 let add_new_task = $("#modal-add-task");
@@ -79,21 +95,12 @@ function displayTasksToDo(new_task){
                         <span class="row-Point">${new_task.point}</span>
                         <span class="row-Due">${new_task.due_date}</span>
                         <span class="row-done">${new_task.is_done}</span>
-                        <span class="row-Options"><i id="fa-check" class="fa-solid fa-check"></i><i class="fa-solid fa-pen"></i><i onClick="deletePost(this)" class="fa-solid fa-trash-can"></i></span>
+                        <span class="row-Options"><i onClick="markAsDone(this)" id="fa-check" class="fa-solid fa-check"></i><i class="fa-solid fa-pen"></i><i onClick="deletePost(this)" class="fa-solid fa-trash-can"></i></span>
                     </div>`
     tasks_to_do.append(new_task_element);
 }
 
-// On load get and display tasks form localStorage
-function displayTasksOnLoad(){
-    const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
-    if (tasks_to_do) {
-        for (let i=0; i<tasks_to_do.length ; i++){
-            displayTasksToDo(tasks_to_do[i]);
-        }
-    }
 
-}
 
 function saveToLocalStorage(new_task){
     //should return an array of objects
@@ -144,18 +151,11 @@ function getDateTime(){
     return now.toLocaleString();
 }
 
-// Mark  task as done:
-// add event listener
-$("#fa-check").click(function(e){
 
-})
 
 // Delete task
 let deletePost = (e) => {
-    //let id = $(e).prev(".row-id").css("background-color", "yellow");
     let id = e.parentElement.parentElement.firstElementChild.innerHTML;
-    //let id = e.parentElement.pre
-    console.log(id);
     e.parentElement.parentElement.remove();
     removeTaskFromStorage(id);
 };
@@ -171,16 +171,87 @@ function removeTaskFromStorage(id){
             console.log("task found at index i= " + i)
             console.log(tasks_to_do[i]);
             console.log(tasks_to_do[i].id);
+            let removed_task = tasks_to_do[i];
             tasks_to_do.splice(i, 1);
             //update local storage
             localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
-
+            return removed_task;
         }
     }
 }
 
+// Mark as done task
+let markAsDone = (e) => {
+    let id = e.parentElement.parentElement.firstElementChild.innerHTML;
+    e.parentElement.parentElement.remove();
+    let completed_task = removeTaskFromStorage(id);
+    console.log(completed_task);
+    moveToCompletedTasks(completed_task);
+    displayCompletedTask(completed_task);
+}
 
+// Save tasks to completed tasks in local storage
+function moveToCompletedTasks(task){
+    //should return an array of objects
+    const tasks_completed = JSON.parse(localStorage.getItem("tasks_completed"));
+    if (tasks_completed){
+        console.log("detected content");
+        // Push new task
+        tasks_completed.push(task);
+        localStorage.setItem("tasks_completed", JSON.stringify(tasks_completed));
+        console.log(tasks_completed);
+    }else{
+        console.log("no detected content");
+        let tasks_completed = [];
+        tasks_completed.push(task);
+        localStorage.setItem("tasks_completed", JSON.stringify(tasks_completed));
+        console.log(tasks_completed);
+        
+    }
+}
 
+// Display in table
+function displayCompletedTask(task){
+    let is_done = true;
+    // Get the element
+    let task_completed = $("#tasks-completed");
+    let new_task_element = `<div class="task-box-header row">
+                        <span class="row-id" >${task.id}</span>
+                        <span class="row-Created">${task.date}</span>
+                        <span class="row-Title">${task.title}</span>
+                        <span class="row-Description">${task.description}</span>
+                        <span class="row-Point">${task.point}</span>
+                        <span class="row-Due">${task.due_date}</span>
+                        <span class="row-done">${is_done}</span>
+                        <span class="row-Options"><i onClick="deleteCompletedPost(this)" class="fa-solid fa-trash-can"></i></span>
+                    </div>`
+    task_completed.append(new_task_element);
+}
 
+// Remove completed task from table
+let deleteCompletedPost = (e) => {
+    let id = e.parentElement.parentElement.firstElementChild.innerHTML;
+    e.parentElement.parentElement.remove();
+    console.log("deleteCompletedPost" + id);
+    deleteFromLocalStorage(id);
+};
 
-
+// Remove completed task from local storage
+function deleteFromLocalStorage(target_id){
+    //should return an array of objects
+    const  completed_tasks = JSON.parse(localStorage.getItem("tasks_completed"));
+    for (let i=0; i<completed_tasks.length ; i++) {
+        console.log(i);
+        console.log("forloop");
+        if (completed_tasks[i].id == target_id){
+            console.log("task found at index i= " + i)
+            console.log(completed_tasks[i]);
+            console.log(completed_tasks[i].id);
+            //let removed_task = completed_tasks[i];
+            completed_tasks.splice(i, 1);
+            //update local storage
+            localStorage.setItem("tasks_completed", JSON.stringify(completed_tasks));
+            //return removed_task;
+        }
+    }
+}
