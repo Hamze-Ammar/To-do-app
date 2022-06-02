@@ -30,11 +30,41 @@ close_search.click(function(){
     $("#myOverlay").hide();
 })
 
+//=========End Overlay Search Bar==========
 
-// function openSearch() {
-//     document.getElementById("myOverlay").style.display = "block";
-// }
+//=========Create Task==========
+let add_new_task = $("#modal-add-task");
+add_new_task.click(function(){
+    createTask();
+})
 
-// function closeSearch() {
-// document.getElementById("myOverlay").style.display = "none";
-// }
+function createTask(){
+    let id = getId(); //to be coded
+    let date = Date.now();
+    let title = $("#modal-title").val();
+    let description = $("#modal-description").val();
+    let point = $("#modal-point").val();
+    let due_date =  $("#modal-due-date").val();
+    console.log(id);
+    console.log(date);
+    console.log(title);
+    console.log(description);
+    console.log(point);
+    console.log(due_date);
+
+}
+
+// get id from local storage
+function getId(){
+    let id = localStorage.getItem("id");
+    let new_id;
+    if (id===null){
+        new_id = 0;
+        localStorage.setItem("id", new_id);
+    }else{
+        new_id = Number(id) + 1;
+        localStorage.setItem("id", new_id );
+    }
+    return new_id;
+}
+
