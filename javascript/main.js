@@ -18,8 +18,6 @@ closeModal.click ( function() {
     modal.hide();
 })
 
-
-
 //=========End Modal part==========
 
 //=========Overlay Search Bar==========
@@ -33,7 +31,6 @@ close_search.click(function(){
 })
 
 //=========End Overlay Search Bar==========
-
 
 // Display tasks on load
 $(document).ready(function(){
@@ -55,7 +52,6 @@ function displayTasksOnLoad(){
         }
     }
 }
-
 
 //=========Create Task==========
 let add_new_task = $("#modal-add-task");
@@ -103,7 +99,6 @@ function displayTasksToDo(new_task){
 }
 
 
-
 function saveToLocalStorage(new_task){
     //should return an array of objects
     const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
@@ -149,8 +144,6 @@ function getDateTime(){
     let now = new Date();
     return now.toLocaleString();
 }
-
-
 
 // Delete task
 let deletePost = (e) => {
@@ -302,21 +295,21 @@ let editTask = (e) => {
 
 
 
-const user_card_container = document.querySelector("[data-container]");
-const search_input = document.querySelector("[data-search]");
+// const user_card_container = document.querySelector("[data-container]");
+// const search_input = document.querySelector("[data-search]");
 
-search_input.addEventListener("input", (e) =>{
-    const value = e.target.value;
-    console.log(value);
-})
+// search_input.addEventListener("input", (e) =>{
+//     const value = e.target.value;
+//     console.log(value);
+// })
 
-const titles = document.querySelector("[data-tilte]");
-console.log(titles);
+// const titles = document.querySelector("[data-tilte]");
+// console.log(titles);
 
-const tasks = document.getElementsByClassName("row-content-to-do");
-const mydata = tasks.forEach(task => {
-    console.log(task);
-    return {title: task.title};
-})
-console.log(tasks);
-console.log(mydata);
+// const tasks = document.getElementsByClassName("row-content-to-do");
+// const mydata = tasks.forEach(task => {
+//     console.log(task);
+//     return {title: task.title};
+// })
+// console.log(tasks);
+// console.log(mydata);
