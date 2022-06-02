@@ -44,14 +44,64 @@ function createTask(){
     let title = $("#modal-title").val();
     let description = $("#modal-description").val();
     let point = $("#modal-point").val();
-    let due_date =  $("#modal-due-date").val();
-    console.log(id);
-    console.log(date);
-    console.log(title);
-    console.log(description);
-    console.log(point);
-    console.log(due_date);
+    let due_date =  $("#modal-due-date").val();;
+    let is_done = false;
+    // create new task object
+    let new_task = {
+        id: id,
+        date: date,
+        title: title,
+        description: description,
+        point: point,
+        due_date: due_date,
+        is_done: is_done,
+    }
+    saveToLocalStorage(new_task);
+    // console.log(id);
+    // console.log(date);
+    // console.log(title);
+    // console.log(description);
+    // console.log(point);
+    // console.log(due_date);
+    // console.log(is_done);
 
+    // save to local storage
+
+}
+
+
+function displayTasksToDo(){
+    let tasks_to_do = $("#tasks-to-do");
+    let new_task = `<div class="task-box-header row">
+                        <span>${id}</span>
+                        <span>Created At</span>
+                        <span>Title</span>
+                        <span class="Description">${id}</span>
+                        <span>${id}</span>
+                        <span>${id}</span>
+                        <span>${id}</span>
+                        <span></span>
+                    </div>`
+
+}
+
+function saveToLocalStorage(new_task){
+    //should return an array of objects
+    const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
+    if (tasks_to_do){
+        console.log("detected content");
+        // Push new task
+        tasks_to_do.push(new_task);
+        localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
+        console.log(tasks_to_do);
+    }else{
+        console.log("no detected content");
+        let tasks_to_do = [];
+        tasks_to_do.push(new_task);
+        localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
+        console.log(tasks_to_do);
+        
+    }
 }
 
 // get id from local storage
