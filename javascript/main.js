@@ -68,7 +68,7 @@ function createTask(){
     let description = $("#modal-description").val();
     let point = $("#modal-point").val();
     let due_date =  $("#modal-due-date").val();;
-    let is_done = false;
+    let is_done = "In Progress";
     // create new task object
     let new_task = {
         id: id,
@@ -212,7 +212,7 @@ function moveToCompletedTasks(task){
 
 // Display in table
 function displayCompletedTask(task){
-    let is_done = true;
+    let is_done = "Done";
     // Get the element
     let task_completed = $("#tasks-completed");
     let new_task_element = `<div class="task-box-header row ">

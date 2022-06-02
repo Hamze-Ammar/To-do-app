@@ -84,26 +84,28 @@ body {
     min-width: 3%;
 }
 .row > .row-Created {
-    min-width: 20%;
+    min-width: 17%;
 }
 .row > .row-Title {
-    min-width: 7%;
+    min-width: 10%;
 }
 .row > .row-Description {
-    min-width: 27%;
+    min-width: 28%;
 }
 .row > .row-Point {
-    min-width: 3%;
-    margin-right: 7px;
+    min-width: 4%;
+    margin-right: 8px;
 }
 .row > .row-Due {
-    min-width: 18%;
+    min-width: 15%;
 }
 .row > .row-done {
     min-width: 8%;
 }
 .row > .row-Options {
-    min-width: 10%;
+    min-width: 7%;
+    float: right;
+    text-align: right;
 }
 .row i {
     margin-right: 5px;
@@ -121,7 +123,7 @@ body {
 }
 
 .main-left > div {
-    background-color: rgb(88, 202, 224);
+    background-color: rgb(177, 215, 223);
 }
 
 .main-right > div {
@@ -276,3 +278,12 @@ cursor: pointer;
 
 /* End overlay search */
 /* ============================= */
+
+@media screen and (max-width: 1200px) {
+    body {
+        margin: 30px 30px;
+    }
+    .row {
+      height: auto;
+    }
+}
