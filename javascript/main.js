@@ -18,6 +18,8 @@ closeModal.click ( function() {
     modal.hide();
 })
 
+
+
 //=========End Modal part==========
 
 //=========Overlay Search Bar==========
@@ -106,17 +108,15 @@ function saveToLocalStorage(new_task){
     //should return an array of objects
     const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
     if (tasks_to_do){
-        console.log("detected content");
+        
         // Push new task
         tasks_to_do.push(new_task);
         localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
-        console.log(tasks_to_do);
     }else{
-        console.log("no detected content");
+        
         let tasks_to_do = [];
         tasks_to_do.push(new_task);
         localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
-        console.log(tasks_to_do);
         
     }
 }
@@ -138,7 +138,6 @@ function getId(){
 function convertDate(timestamp){
     //timestamp *= 1000;
     timestamp = String(timestamp);
-    console.log(typeof timestamp);
     let my_date = new Date(timestamp);
     //console.log(my_date);
     my_date = String(my_date).slice(4, 25);
@@ -163,14 +162,8 @@ let deletePost = (e) => {
 function removeTaskFromStorage(id){
     //should return an array of objects
     const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
-    console.log(typeof tasks_to_do[0] );
     for (let i=0; i<tasks_to_do.length ; i++) {
-        console.log("forloop")
         if (tasks_to_do[i].id == id){
-
-            console.log("task found at index i= " + i)
-            console.log(tasks_to_do[i]);
-            console.log(tasks_to_do[i].id);
             let removed_task = tasks_to_do[i];
             tasks_to_do.splice(i, 1);
             //update local storage
@@ -185,7 +178,6 @@ let markAsDone = (e) => {
     let id = e.parentElement.parentElement.firstElementChild.innerHTML;
     e.parentElement.parentElement.remove();
     let completed_task = removeTaskFromStorage(id);
-    console.log(completed_task);
     moveToCompletedTasks(completed_task);
     displayCompletedTask(completed_task);
 }
@@ -195,17 +187,13 @@ function moveToCompletedTasks(task){
     //should return an array of objects
     const tasks_completed = JSON.parse(localStorage.getItem("tasks_completed"));
     if (tasks_completed){
-        console.log("detected content");
         // Push new task
         tasks_completed.push(task);
         localStorage.setItem("tasks_completed", JSON.stringify(tasks_completed));
-        console.log(tasks_completed);
     }else{
-        console.log("no detected content");
         let tasks_completed = [];
         tasks_completed.push(task);
         localStorage.setItem("tasks_completed", JSON.stringify(tasks_completed));
-        console.log(tasks_completed);
         
     }
 }
@@ -215,10 +203,10 @@ function displayCompletedTask(task){
     let is_done = "Done";
     // Get the element
     let task_completed = $("#tasks-completed");
-    let new_task_element = `<div class="task-box-header row ">
+    let new_task_element = `<div class="task-box-header row " data-container>
                         <span class="row-id" >${task.id}</span>
                         <span class="row-Created">${task.date}</span>
-                        <span class="row-Title">${task.title}</span>
+                        <span class="row-Title" data-tilte>${task.title}</span>
                         <span class="row-Description">${task.description}</span>
                         <span class="row-Point">${task.point}</span>
                         <span class="row-Due">${task.due_date}</span>
@@ -232,7 +220,6 @@ function displayCompletedTask(task){
 let deleteCompletedPost = (e) => {
     let id = e.parentElement.parentElement.firstElementChild.innerHTML;
     e.parentElement.parentElement.remove();
-    console.log("deleteCompletedPost" + id);
     deleteFromLocalStorage(id);
 };
 
@@ -241,12 +228,7 @@ function deleteFromLocalStorage(target_id){
     //should return an array of objects
     const  completed_tasks = JSON.parse(localStorage.getItem("tasks_completed"));
     for (let i=0; i<completed_tasks.length ; i++) {
-        console.log(i);
-        console.log("forloop");
         if (completed_tasks[i].id == target_id){
-            console.log("task found at index i= " + i)
-            console.log(completed_tasks[i]);
-            console.log(completed_tasks[i].id);
             //let removed_task = completed_tasks[i];
             completed_tasks.splice(i, 1);
             //update local storage
@@ -315,3 +297,26 @@ let editTask = (e) => {
     selectedTask.remove();
     removeTaskFromStorage(id);
 }
+
+//============== Search bar =======================
+
+
+
+const user_card_container = document.querySelector("[data-container]");
+const search_input = document.querySelector("[data-search]");
+
+search_input.addEventListener("input", (e) =>{
+    const value = e.target.value;
+    console.log(value);
+})
+
+const titles = document.querySelector("[data-tilte]");
+console.log(titles);
+
+const tasks = document.getElementsByClassName("row-content-to-do");
+const mydata = tasks.forEach(task => {
+    console.log(task);
+    return {title: task.title};
+})
+console.log(tasks);
+console.log(mydata);

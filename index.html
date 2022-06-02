@@ -20,13 +20,14 @@
             <button class="openBtn btn" id="sort-by-date">Sort By Date</button>
             
             <button class="openBtn btn" id="sort-by-point">Sort By point</button>
-            <button class="openBtn btn" id="openSearch">Search</button>
+            <input type="text" class="openBtn btn" id="" name="search"placeholder="Search.." data-search>
         </div>
+        
     </div>
     <div class="main">
         <div class="main-left" id="tasks-to-do">
-            <h4>Tasks To Do</h4>
-            <div class="task-box-header row">
+            <h2>Tasks To Do</h2>
+            <div class="task-box-header row" id="uncomplete-tasks-div">
                 <span class="row-id">Id</span>
                 <span class="row-Created" >Created At</span>
                 <span class="row-Title">Title</span>
@@ -38,7 +39,7 @@
             </div>
         </div>
         <div class="main-right" id="tasks-completed">
-            <h4>Task completed</h4>
+            <h2>Tasks completed</h2>
             <div class="task-box-header row">
                 <span class="row-id">Id</span>
                 <span class="row-Created" >Created At</span>
@@ -57,9 +58,9 @@
     <div id="myOverlay" class="overlay">
         <span class="closebtn" id="closeBtnSearch" title="Close Overlay">×</span>
         <div class="overlay-content">
-          <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+          <form>
+            <input type="text" placeholder="Search.." name="search" id="search-input">
+            <button type="submit" id="submit-search"><i class="fa fa-search"></i></button>
           </form>
         </div>
     </div>
@@ -68,7 +69,7 @@
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" id="model-id">
             <span class="close">&times;</span>
             <h4 style="text-align:center;">Add New Task</h4>
             <p>Title</p>

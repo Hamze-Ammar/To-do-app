@@ -9,18 +9,19 @@
 body {
     font-family: sans-serif;
     margin: 50px 150px;
-    background-color: #e5e5e5;
+    background-color: #f7f0f0;
     overflow: hidden;
     display: flex;
     /* justify-content: center; */
     align-items: center;
     /* height: 100vh; */
-    border: 1px solid;
+    /* border: 1px solid; */
     flex-direction: column;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 1.4em;
     overflow: auto;
+    color: #333;
   }
 
 .btn {
@@ -28,7 +29,7 @@ body {
     font-weight: 700;
     font-size: 1em;
     padding: 10px 20px;
-    background-color: dodgerblue;
+    background-color: rgb(101, 169, 236);
     border: 1px solid #ddd;
     color: white;
     cursor: pointer;
@@ -45,12 +46,12 @@ body {
 .options {
     display: flex;
     width: 100%;
-    border: 1px solid black;
-    margin: 15px auto;
+    margin-top: 15px;
+    /* border: 1px solid #fff; */
+    /* margin: 15px auto; */
 }
 
 .main {
-    border: 1px solid;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -58,13 +59,21 @@ body {
     font-size: 15px;
 }
 
+
+
+.main-left {
+    background-color: rgb(150, 212, 223);
+}
+.main-right {
+    background-color: rgb(104, 157, 167);
+}
+
 .main > div {
-    border: 1px solid;
     min-width: 45%;
-    min-height: 400px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 40px;
 }
 
 .row {
@@ -149,7 +158,7 @@ body {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 35%; /* Could be more or less, depending on screen size */
@@ -168,6 +177,7 @@ body {
 
 #modal-description {
     width: 80%;
+    font-size: 1rem;
 }
 
 /* Add task modal buton */
@@ -206,7 +216,7 @@ cursor: pointer;
 /* The overlay effect with black background -SEARCH BAR */
 
 .openBtn {
-    background: #f1f1f1;
+    background: #d6cccc;
     border: none;
     padding: 10px 15px;
     font-size: 20px;
@@ -215,8 +225,8 @@ cursor: pointer;
 }
 
 .openBtn:hover {
-background: #bbb;
-color: #f1f1f1;
+background: rgb(177, 215, 223);
+color: #807b7b;
 }
 
 .overlay {
@@ -276,6 +286,7 @@ border: none;
 cursor: pointer;
 }
 
+
 /* End overlay search */
 /* ============================= */
 
@@ -285,5 +296,9 @@ cursor: pointer;
     }
     .row {
       height: auto;
+    }
+    .modal-content {
+        width: 80%;
+        align-self: center;
     }
 }
