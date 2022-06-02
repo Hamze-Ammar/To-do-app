@@ -94,6 +94,7 @@ body {
 }
 .row > .row-Point {
     min-width: 3%;
+    margin-right: 7px;
 }
 .row > .row-Due {
     min-width: 18%;
@@ -119,12 +120,14 @@ body {
     font-size: larger;
 }
 
-
-
-.task-box-header {
-    background-color: rgb(196, 201, 202);
-
+.main-left > div {
+    background-color: rgb(88, 202, 224);
 }
+
+.main-right > div {
+    background-color: rgb(196, 201, 202);
+}
+
 
 /* ============================= */
 /* The Modal (background) */
