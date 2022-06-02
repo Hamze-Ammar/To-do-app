@@ -32,6 +32,9 @@ close_search.click(function(){
 
 //=========End Overlay Search Bar==========
 
+
+
+
 //=========Create Task==========
 let add_new_task = $("#modal-add-task");
 add_new_task.click(function(){
@@ -57,31 +60,34 @@ function createTask(){
         is_done: is_done,
     }
     saveToLocalStorage(new_task);
-    // console.log(id);
-    // console.log(date);
-    // console.log(title);
-    // console.log(description);
-    // console.log(point);
-    // console.log(due_date);
-    // console.log(is_done);
-
-    // save to local storage
+    displayTasksToDo(new_task);
 
 }
 
-
-function displayTasksToDo(){
+function displayTasksToDo(new_task){
+    // Get the element
     let tasks_to_do = $("#tasks-to-do");
-    let new_task = `<div class="task-box-header row">
-                        <span>${id}</span>
-                        <span>Created At</span>
-                        <span>Title</span>
-                        <span class="Description">${id}</span>
-                        <span>${id}</span>
-                        <span>${id}</span>
-                        <span>${id}</span>
+    let new_task_element = `<div class="task-box-header row">
+                        <span>${new_task.id}</span>
+                        <span>${new_task.date}</span>
+                        <span>${new_task.title}</span>
+                        <span class="Description">${new_task.description}</span>
+                        <span>${new_task.point}</span>
+                        <span>${new_task.due_date}</span>
+                        <span>${new_task.is_done}</span>
                         <span></span>
                     </div>`
+    tasks_to_do.append(new_task_element);
+}
+
+// On load get and display tasks form localStorage
+function displayTasksOnLoad(){
+    const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
+    if (tasks_to_do) {
+        for (let i=0; i<tasks_to_do.length ; i++){
+            displayTasksToDo(tasks_to_do[i]);
+        }
+    }
 
 }
 
@@ -118,3 +124,14 @@ function getId(){
     return new_id;
 }
 
+function convertDate(timestamp){
+    //timestamp *= 1000;
+    timestamp = String(timestamp);
+    console.log(typeof timestamp);
+    let my_date = new Date(timestamp);
+    //console.log(my_date);
+    my_date = String(my_date).slice(4, 25);
+    //console.log(my_date);
+}
+
+displayTasksOnLoad();
