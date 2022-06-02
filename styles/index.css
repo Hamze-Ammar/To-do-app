@@ -84,7 +84,7 @@ body {
     min-width: 3%;
 }
 .row > .row-Created {
-    min-width: 18%;
+    min-width: 20%;
 }
 .row > .row-Title {
     min-width: 7%;
@@ -93,7 +93,7 @@ body {
     min-width: 27%;
 }
 .row > .row-Point {
-    min-width: 5%;
+    min-width: 3%;
 }
 .row > .row-Due {
     min-width: 18%;
@@ -102,7 +102,7 @@ body {
     min-width: 8%;
 }
 .row > .row-Options {
-    min-width: 12%;
+    min-width: 10%;
 }
 .row i {
     margin-right: 5px;

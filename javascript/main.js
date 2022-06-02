@@ -33,6 +33,10 @@ close_search.click(function(){
 //=========End Overlay Search Bar==========
 
 
+// Display tasks on load
+$(document).ready(function(){
+    displayTasksOnLoad();
+});
 
 
 //=========Create Task==========
@@ -43,7 +47,7 @@ add_new_task.click(function(){
 
 function createTask(){
     let id = getId(); //to be coded
-    let date = Date.now();
+    let date = getDateTime();
     let title = $("#modal-title").val();
     let description = $("#modal-description").val();
     let point = $("#modal-point").val();
@@ -75,7 +79,7 @@ function displayTasksToDo(new_task){
                         <span class="row-Point">${new_task.point}</span>
                         <span class="row-Due">${new_task.due_date}</span>
                         <span class="row-done">${new_task.is_done}</span>
-                        <span class="row-Options"><i class="fa-solid fa-check"></i><i class="fa-solid fa-pen"></i><i class="fa-solid fa-trash-can"></i></span>
+                        <span class="row-Options"><i id="fa-check" class="fa-solid fa-check"></i><i class="fa-solid fa-pen"></i><i onClick="deletePost(this)" class="fa-solid fa-trash-can"></i></span>
                     </div>`
     tasks_to_do.append(new_task_element);
 }
@@ -134,4 +138,49 @@ function convertDate(timestamp){
     //console.log(my_date);
 }
 
-displayTasksOnLoad();
+// Get Date and Time
+function getDateTime(){
+    let now = new Date();
+    return now.toLocaleString();
+}
+
+// Mark  task as done:
+// add event listener
+$("#fa-check").click(function(e){
+
+})
+
+// Delete task
+let deletePost = (e) => {
+    //let id = $(e).prev(".row-id").css("background-color", "yellow");
+    let id = e.parentElement.parentElement.firstElementChild.innerHTML;
+    //let id = e.parentElement.pre
+    console.log(id);
+    e.parentElement.parentElement.remove();
+    removeTaskFromStorage(id);
+};
+
+function removeTaskFromStorage(id){
+    //should return an array of objects
+    const tasks_to_do = JSON.parse(localStorage.getItem("tasks_to_do"));
+    console.log(typeof tasks_to_do[0] );
+    for (let i=0; i<tasks_to_do.length ; i++) {
+        console.log("forloop")
+        if (tasks_to_do[i].id == id){
+
+            console.log("task found at index i= " + i)
+            console.log(tasks_to_do[i]);
+            console.log(tasks_to_do[i].id);
+            tasks_to_do.splice(i, 1);
+            //update local storage
+            localStorage.setItem("tasks_to_do", JSON.stringify(tasks_to_do));
+
+        }
+    }
+}
+
+
+
+
+
+
