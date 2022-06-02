@@ -17,11 +17,11 @@
     <div class="header">
         <h1>To Do App</h1>
         <div class="options">
-            <button class="btn">Add New Task</button>
-            <span>Search</span>
-            <input type="text" id="search-bar">
-            <button class="btn">Sort By Date</button>
-            <button class="btn">Sort By point</button>
+            <button class="btn openBtn" id="myBtn">Add New Task</button>
+            <button class="openBtn btn">Sort By Date</button>
+            
+            <button class="openBtn btn">Sort By point</button>
+            <button class="openBtn btn" id="openSearch">Search</button>
         </div>
     </div>
     <div class="main">
@@ -35,7 +35,7 @@
                 <span>Point</span>
                 <span>Due Date</span>
                 <span>Is done</span>
-                <span></span>
+                <span>Options</span>
 
             </div>
         </div>
@@ -49,11 +49,43 @@
                 <span>Point</span>
                 <span>Due Date</span>
                 <span>Is done</span>
-                <span></span>
+                <span>Options</span>
 
             </div>
         </div>
 
+    </div>
+    <!-- overlay search bar -->
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" id="closeBtnSearch" title="Close Overlay">×</span>
+        <div class="overlay-content">
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+    </div>
+    <!-- End overlay search bar -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4 style="text-align:center;">Add New Task</h4>
+            <p>Title</p>
+            <input type="text" id="modal-title">
+            <p>Description</p>
+            <!--<input type="text-field" id="modal-description">-->
+            <textarea id="modal-description" name="modal-description" rows="8" cols="50"></textarea>
+            <p>point</p>
+            <input type="number" id="modal-point" name="point" min="1" max="5">
+            <p>Due Date</p>
+            <input type="date">
+            <input class="btn" type="button" id="modal-add-task" value="Add Task">
+
+        </div>
+  
     </div>
     
 
