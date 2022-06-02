@@ -68,14 +68,14 @@ function displayTasksToDo(new_task){
     // Get the element
     let tasks_to_do = $("#tasks-to-do");
     let new_task_element = `<div class="task-box-header row">
-                        <span>${new_task.id}</span>
-                        <span>${new_task.date}</span>
-                        <span>${new_task.title}</span>
-                        <span class="Description">${new_task.description}</span>
-                        <span>${new_task.point}</span>
-                        <span>${new_task.due_date}</span>
-                        <span>${new_task.is_done}</span>
-                        <span></span>
+                        <span class="row-id" >${new_task.id}</span>
+                        <span class="row-Created">${new_task.date}</span>
+                        <span class="row-Title">${new_task.title}</span>
+                        <span class="row-Description">${new_task.description}</span>
+                        <span class="row-Point">${new_task.point}</span>
+                        <span class="row-Due">${new_task.due_date}</span>
+                        <span class="row-done">${new_task.is_done}</span>
+                        <span class="row-Options"><i class="fa-solid fa-check"></i><i class="fa-solid fa-pen"></i><i class="fa-solid fa-trash-can"></i></span>
                     </div>`
     tasks_to_do.append(new_task_element);
 }

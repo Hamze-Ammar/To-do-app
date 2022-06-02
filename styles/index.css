@@ -55,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content:space-around;
-    
+    font-size: 15px;
 }
 
 .main > div {
@@ -69,30 +69,60 @@ body {
 
 .row {
     display: flex;
-    justify-content: space-around;
-    padding: 5px;
     margin-bottom: 10px;
+    justify-content: inherit;
+    height: 25px;
         
 }
 
 .row > span {
-    /* min-width: 5em; */
-    /* padding: auto 5px; */
-    border-right: 1px solid;
     text-align: left;
     padding-right: 5px;
 }
 
-/* .row > span:: {
-    border-left: 1px solid;
-} */
-
-.row > .Description {
-    flex-grow: 0.4;
+.row > .row-id {
+    min-width: 3%;
+}
+.row > .row-Created {
+    min-width: 18%;
+}
+.row > .row-Title {
+    min-width: 7%;
+}
+.row > .row-Description {
+    min-width: 27%;
+}
+.row > .row-Point {
+    min-width: 5%;
+}
+.row > .row-Due {
+    min-width: 18%;
+}
+.row > .row-done {
+    min-width: 8%;
+}
+.row > .row-Options {
+    min-width: 12%;
+}
+.row i {
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.row .fa-check {
+    color: rgb(35, 150, 35)
+}
+.row .fa-trash-can {
+    color: rgb(228, 67, 67)
+}
+.row i:hover {
+    font-size: larger;
 }
 
+
+
 .task-box-header {
-    background-color: lightblue;
+    background-color: rgb(196, 201, 202);
 
 }
 
