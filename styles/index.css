@@ -90,31 +90,32 @@ body {
 }
 
 .row > .row-id {
-    min-width: 3%;
+    width: 3%;
 }
 .row > .row-Created {
-    min-width: 17%;
+    width: 17%;
 }
 .row > .row-Title {
-    min-width: 10%;
+    width: 14%;
 }
 .row > .row-Description {
-    min-width: 28%;
+    width: 28%;
+
 }
 .row > .row-Point {
-    min-width: 4%;
-    margin-right: 8px;
+    width: 4%;
 }
 .row > .row-Due {
-    min-width: 15%;
+    width: 15%;
 }
 .row > .row-done {
-    min-width: 8%;
+    width: 10%;
 }
 .row > .row-Options {
-    min-width: 7%;
-    float: right;
+    width: 10%;
+    /* float: right; */
     text-align: right;
+    
 }
 .row i {
     margin-right: 5px;
